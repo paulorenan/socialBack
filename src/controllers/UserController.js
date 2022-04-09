@@ -1,4 +1,5 @@
 const UserService = require('../services/UserService');
+const auth = require('../schemas/authentication');
 
 const createUser = async (req, res) => {
   const { nickName, email, name, password, image } = req.body;
@@ -9,7 +10,11 @@ const createUser = async (req, res) => {
     password,
     image
   });
-  res.status(201).json(user);
+  const token = auth.generateToken(user);
+  res.status(201).json({
+    user,
+    token
+  });
 }
 
 const getUsers = async (req, res) => {
