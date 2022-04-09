@@ -12,10 +12,26 @@ const createUser = async (user) => {
 };
 
 const getUsers = async () => {
-  return await User.findAll();
-}
+  const users = await User.findAll({
+    attributes: { exclude: ['password'] }
+  });
+  return users;
+};
+
+const userLogin = async (user) => {
+  const { email, password } = user;
+  const userData = await User.findOne({
+    where: {
+      email,
+      password
+    },
+    attributes: { exclude: ['password'] }
+  });
+  return userData;
+};
 
 module.exports = {
   createUser,
-  getUsers
+  getUsers,
+  userLogin
 };
