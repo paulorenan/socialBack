@@ -1,0 +1,17 @@
+.idea/
+.vscode/
+node_modules/
+build/
+tmp/
+temp/
+package-lock.json
+.git/
+.gitmodules
+.DS_Store
+.env
+.env.example
+.env.local
+.env.test
+.env.development
+.env.production
+.env.staging
