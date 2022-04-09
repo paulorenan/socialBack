@@ -14,8 +14,17 @@ const generateToken = (user) => {
     nickName: user.nickName,
   };
   return jwt.sign(payload, secret, jwtConfig);
-}
+};
+
+const verifyToken = (token) => {
+  try {
+    return jwt.verify(token, secret, jwtConfig);
+  } catch(err) {
+    return false;
+  }
+};
 
 module.exports = {
-  generateToken
+  generateToken,
+  verifyToken
 }

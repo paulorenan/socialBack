@@ -18,6 +18,16 @@ const getUsers = async () => {
   return users;
 };
 
+const getUserByEmail = async (email) => {
+  const user = await User.findOne({
+    where: {
+      email
+    },
+    attributes: { exclude: ['password'] }
+  });
+  return user;
+};
+
 const userLogin = async (user) => {
   const { email, password } = user;
   const userData = await User.findOne({
@@ -33,5 +43,6 @@ const userLogin = async (user) => {
 module.exports = {
   createUser,
   getUsers,
-  userLogin
+  userLogin,
+  getUserByEmail
 };

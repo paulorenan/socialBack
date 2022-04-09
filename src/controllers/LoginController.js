@@ -8,16 +8,15 @@ const login = async (req, res) => {
     password
   });
   if (!user) {
-    res.status(401).json({
+    return res.status(401).json({
       message: 'Invalid email or password'
     });
-  } else {
-    const token = auth.generateToken(user);
-    res.status(200).json({
-      user,
-      token
-    });
   }
+  const token = auth.generateToken(user);
+  return res.status(200).json({
+    user,
+    token
+  });
 };
 
 module.exports = {
