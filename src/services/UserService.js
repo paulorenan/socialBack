@@ -1,14 +1,17 @@
 const { User } = require('../models');
 
 const createUser = async (user) => {
-  const { nickName, email, name, password, image } = user;
+  const { nickName, email, name, password } = user;
+  try {
   return await User.create({
     nickName,
     email,
     name,
-    password,
-    image
+    password
   });
+  } catch (error) {
+    return { error }
+  }
 };
 
 const getUsers = async () => {
