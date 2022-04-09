@@ -40,13 +40,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  Post.associate = (models) => {
-    Post.belongsTo(models.User, {
+  Answer.associate = (models) => {
+    Answer.belongsTo(models.User, {
       foreignKey: 'userId',
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE'
     });
-    Post.belongsTo(models.Post, {
+    Answer.belongsTo(models.Post, {
       foreignKey: 'postId',
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE'

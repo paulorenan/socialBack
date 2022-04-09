@@ -1,4 +1,4 @@
-const { Post, User } = require('../models/');
+const { Post, User, Answer } = require('../models/');
 
 const createPost = async (post) => {
   const { content, userId } = post;
@@ -20,7 +20,18 @@ const getAllPosts = async () => {
     }],
     order: [['createdAt', 'DESC']]
   });
-  return posts;
+  const postsWithAnswers = await Promise.all(posts.map(async (post) => {
+    const answers = await Answer.count({
+      where: {
+        postId: post.id
+      }
+    });
+    return {
+      ...post.dataValues,
+      answers
+    };
+  }));
+  return postsWithAnswers;
 };
 
 module.exports = {
