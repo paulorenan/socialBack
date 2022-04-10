@@ -24,7 +24,22 @@ const getAllAnswers = async () => {
   return answers;
 };
 
+const getAnswersByPostId = async (postId) => {
+  const answers = await Answer.findAll({
+    where: {
+      postId
+    },
+    include: [{
+      model: User,
+      attributes: { exclude: ['password', 'createdAt', 'updatedAt', 'email'] }
+    }],
+    order: [['createdAt', 'ASC']]
+  });
+  return answers;
+};
+
 module.exports = {
   createAnswer,
-  getAllAnswers
+  getAllAnswers,
+  getAnswersByPostId
 }

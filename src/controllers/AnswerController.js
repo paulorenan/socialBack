@@ -33,7 +33,13 @@ const getAllAnswers = async (req, res) => {
   return res.status(200).json(answers);
 };
 
+const getAnswersByPostId = async (req, res) => {
+  const answers = await AnswerService.getAnswersByPostId(req.params.postId);
+  return res.status(200).json(answers);
+};
+
 module.exports = {
   createAnswer,
-  getAllAnswers
+  getAllAnswers,
+  getAnswersByPostId
 };
