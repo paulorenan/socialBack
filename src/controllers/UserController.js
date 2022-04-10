@@ -5,7 +5,7 @@ const validation = require('../schemas/validation');
 const createUser = async (req, res) => {
   const newUser = req.body;
   const error = validation.validateUser(newUser);
-  if (error) {
+  if (Object.keys(error).length > 0) {
     return res.status(400).json({ error });
   }
   const user = await UserService.createUser(newUser);
