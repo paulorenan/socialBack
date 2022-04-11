@@ -43,9 +43,20 @@ const userLogin = async (user) => {
   return userData;
 };
 
+const getUserByNickname = async (nickName) => {
+  const user = await User.findOne({
+    where: {
+      nickName
+    },
+    attributes: { exclude: ['password'] }
+  });
+  return user;
+};
+
 module.exports = {
   createUser,
   getUsers,
   userLogin,
-  getUserByEmail
+  getUserByEmail,
+  getUserByNickname
 };
