@@ -3,12 +3,12 @@ const auth = require('../schemas/authentication');
 const validation = require('../schemas/validation');
 
 const createUser = async (req, res) => {
-  const newUser = req.body;
-  const error = validation.validateUser(newUser);
+  const { name, nickName, email, password } = req.body;
+  const error = validation.validateUser({ nickName, email, name, password });
   if (Object.keys(error).length > 0) {
     return res.status(400).json({ error });
   }
-  const user = await UserService.createUser(newUser);
+  const user = await UserService.createUser({ nickName, email, name, password });
   if (user.error) {
     return res.status(400).json({error: user.error.errors[0].message});
   }
