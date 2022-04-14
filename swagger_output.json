@@ -5,10 +5,10 @@
     "title": "SocialNetwork API",
     "description": "A simple API to manage social network"
   },
-  "host": "https://the-social-back.herokuapp.com",
+  "host": "the-social-back.herokuapp.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/api/users/": {
