@@ -31,6 +31,7 @@ const getAnswersByPostId = async (postId) => {
     },
     include: [{
       model: User,
+      as: 'user',
       attributes: { exclude: ['password', 'createdAt', 'updatedAt', 'email'] }
     }],
     order: [['createdAt', 'ASC']]

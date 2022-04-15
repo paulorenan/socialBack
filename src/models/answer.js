@@ -42,6 +42,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Answer.associate = (models) => {
     Answer.belongsTo(models.User, {
+      as: 'user',
       foreignKey: 'userId',
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE'
