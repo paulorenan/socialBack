@@ -3,6 +3,6 @@ const { Router } = require('express');
 
 const LikeRouter = Router();
 LikeRouter.post('/', LikeController.createLike);
-LikeRouter.delete('/', LikeController.deleteLike);
+LikeRouter.delete('/:postId', LikeController.deleteLike);
 
 module.exports = LikeRouter;
