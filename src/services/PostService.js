@@ -1,4 +1,4 @@
-const { Post, User, Answer } = require('../models/');
+const { Post, User, Answer, Like } = require('../models/');
 
 const createPost = async (post) => {
   const { content, userId } = post;
@@ -16,7 +16,13 @@ const getAllPosts = async () => {
   const posts = await Post.findAll({
     include: [{
       model: User,
+      as: 'user',
       attributes: { exclude: ['password', 'createdAt', 'updatedAt', 'email'] }
+    },
+    {
+      model: Like,
+      as: 'likes',
+      attributes: ['userId']
     }],
     order: [['createdAt', 'DESC']]
   });
