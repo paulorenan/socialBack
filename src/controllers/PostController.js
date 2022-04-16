@@ -57,9 +57,34 @@ const updatePost = async (req, res) => {
   return res.status(200).json(newPost);
 };
 
+const deletePost = async (req, res) => {
+  const userToken = req.headers.authorization;
+  if (!userToken) {
+    return res.status(401).json({ error: 'No token provided' });
+  };
+  const authToken = auth.verifyToken(userToken);
+  if (!authToken) {
+    return res.status(401).json({ error: 'Invalid token' });
+  };
+  const postId = req.params.id;
+  const post = await PostService.getPostById(postId);
+  if (!post) {
+    return res.status(404).json({ error: 'Post not found' });
+  };
+  if (post.userId !== authToken.userId) {
+    return res.status(403).json({ error: 'You are not allowed to delete this post' });
+  };
+  const deletedPost = await PostService.deletePost(postId);
+  if (post.error) {
+    return res.status(400).json({ error: post.error });
+  };
+  return res.status(200).json(deletedPost);
+};
+
 
 module.exports = {
   createPost,
   getAllPosts,
   updatePost,
+  deletePost,
 };
