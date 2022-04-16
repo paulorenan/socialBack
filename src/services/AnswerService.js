@@ -48,9 +48,42 @@ const countAnswersByPostId = async (postId) => {
   return count;
 };
 
+const getAnswerById = async (id) => {
+  const answer = await Answer.findOne({
+    where: {
+      id
+    }
+  });
+  return answer;
+};
+
+const updateAnswer = async (id, content) => {
+  const answer = await Answer.update({
+    content,
+    updateAt: new Date()
+  }, {
+    where: {
+      id
+    }
+  });
+  return answer;
+};
+
+const deleteAnswer = async (id) => {
+  const answer = await Answer.destroy({
+    where: {
+      id
+    }
+  });
+  return answer;
+};
+
 module.exports = {
   createAnswer,
   getAllAnswers,
   getAnswersByPostId,
   countAnswersByPostId,
+  getAnswerById,
+  updateAnswer,
+  deleteAnswer,
 }
