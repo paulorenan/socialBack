@@ -38,8 +38,15 @@ const getAnswersByPostId = async (req, res) => {
   return res.status(200).json(answers);
 };
 
+const countAnswersByPostId = async (req, res) => {
+  const postId = req.params.postId;
+  const count = await AnswerService.countAnswersByPostId(postId);
+  return res.status(200).json(count);
+}; 
+
 module.exports = {
   createAnswer,
   getAllAnswers,
-  getAnswersByPostId
+  getAnswersByPostId,
+  countAnswersByPostId,
 };

@@ -26,18 +26,7 @@ const getAllPosts = async () => {
     }],
     order: [['createdAt', 'DESC']]
   });
-  const postsWithAnswers = await Promise.all(posts.map(async (post) => {
-    const answers = await Answer.count({
-      where: {
-        postId: post.id
-      }
-    });
-    return {
-      ...post.dataValues,
-      answers
-    };
-  }));
-  return postsWithAnswers;
+  return posts;
 };
 
 module.exports = {

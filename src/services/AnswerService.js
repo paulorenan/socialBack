@@ -39,8 +39,18 @@ const getAnswersByPostId = async (postId) => {
   return answers;
 };
 
+const countAnswersByPostId = async (postId) => {
+  const count = await Answer.count({
+    where: {
+      postId
+    }
+  });
+  return count;
+};
+
 module.exports = {
   createAnswer,
   getAllAnswers,
-  getAnswersByPostId
+  getAnswersByPostId,
+  countAnswersByPostId,
 }
