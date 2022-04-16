@@ -29,7 +29,30 @@ const getAllPosts = async () => {
   return posts;
 };
 
+const getPostById = async (postId) => {
+  const post = await Post.findOne({
+    where: {
+      id: postId
+    },
+  });
+  return post;
+};
+
+const updatePost = async (postId, content) => {
+  const post = await Post.update({
+    content,
+    updateAt: new Date()
+  }, {
+    where: {
+      id: postId
+    }
+  });
+  return post;
+};
+
 module.exports = {
   createPost,
-  getAllPosts
+  getAllPosts,
+  getPostById,
+  updatePost,
 }

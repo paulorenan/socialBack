@@ -7,13 +7,13 @@ const createPost = async (req, res) => {
     return res.status(401).json({
       error: 'No token provided'
     });
-  }
+  };
   const authToken = auth.verifyToken(userToken);
   if (!authToken) {
     return res.status(401).json({
       error: 'Invalid token'
     });
-  }
+  };
   const newPost = {
     content: req.body.content,
     userId: authToken.userId
@@ -23,16 +23,43 @@ const createPost = async (req, res) => {
     return res.status(400).json({
       error: post.error.errors[0].message
     });
-  }
+  };
   return res.status(201).json(post);
-}
+};
 
 const getAllPosts = async (req, res) => {
   const posts = await PostService.getAllPosts();
   return res.status(200).json(posts);
-}
+};
+
+const updatePost = async (req, res) => {
+  const userToken = req.headers.authorization;
+  if (!userToken) {
+    return res.status(401).json({ error: 'No token provided' });
+  };
+  const authToken = auth.verifyToken(userToken);
+  if (!authToken) {
+    return res.status(401).json({ error: 'Invalid token' });
+  };
+  const postId = req.params.id;
+  const post = await PostService.getPostById(postId);
+  if (!post) {
+    return res.status(404).json({ error: 'Post not found' });
+  };
+  if (post.userId !== authToken.userId) {
+    return res.status(403).json({ error: 'You are not allowed to edit this post' });
+  };
+  const content = req.body.content;
+  const newPost = await PostService.updatePost(postId, content);
+  if (post.error) {
+    return res.status(400).json({ error: post.error });
+  };
+  return res.status(200).json(newPost);
+};
+
 
 module.exports = {
   createPost,
-  getAllPosts
+  getAllPosts,
+  updatePost,
 };
