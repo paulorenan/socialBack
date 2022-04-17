@@ -81,10 +81,17 @@ const deletePost = async (req, res) => {
   return res.status(200).json(deletedPost);
 };
 
+const getPostByUserId = async (req, res) => {
+  const userId = req.params.id;
+  const posts = await PostService.getPostByUserId(userId);
+  return res.status(200).json(posts);
+};
+
 
 module.exports = {
   createPost,
   getAllPosts,
   updatePost,
   deletePost,
+  getPostByUserId,
 };

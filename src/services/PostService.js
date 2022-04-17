@@ -38,6 +38,26 @@ const getPostById = async (postId) => {
   return post;
 };
 
+const getPostByUserId = async (userId) => {
+  const posts = await Post.findAll({
+    where: {
+      userId
+    },
+    include: [{
+      model: User,
+      as: 'user',
+      attributes: { exclude: ['password', 'createdAt', 'updatedAt', 'email'] }
+    },
+    {
+      model: Like,
+      as: 'likes',
+      attributes: ['userId']
+    }],
+    order: [['createdAt', 'DESC']]
+  });
+  return posts;
+};
+
 const updatePost = async (postId, content) => {
   const post = await Post.update({
     content,
@@ -65,4 +85,5 @@ module.exports = {
   getPostById,
   updatePost,
   deletePost,
+  getPostByUserId,
 }
