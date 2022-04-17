@@ -33,8 +33,31 @@ const getUserByNickname = async (req, res) => {
   res.status(200).json(user);
 };
 
+const updateUser = async (req, res) => {
+  const userToken = req.headers.authorization;
+  if (!userToken) {
+    return res.status(401).json({ error: 'No token provided' });
+  };
+  const authToken = auth.verifyToken(userToken);
+  if (!authToken) {
+    return res.status(401).json({ error: 'Invalid token' });
+  };
+  const id = authToken.userId;
+  const { name, nickName, image } = req.body;
+  const error = validation.validateUpdateUser({ name, nickName, });
+  if (Object.keys(error).length > 0) {
+    return res.status(400).json({ error });
+  }
+  const user = await UserService.updateUser(id, { name, nickName, image });
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+  res.status(200).json(user);
+};
+
 module.exports = {
   createUser,
   getUsers,
   getUserByNickname,
+  updateUser,
 };

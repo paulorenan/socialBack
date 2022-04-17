@@ -78,6 +78,21 @@ const validateUser = (user) => {
   return errors;
 }
 
+const validateUpdateUser = (user) => {
+  const { name, nickName } = user;
+  let errors = {};
+  let nameError = validateName(name);
+  if (nameError) {
+    errors.name = nameError;
+  }
+  let nickNameError = validateNickName(nickName);
+  if (nickNameError) {
+    errors.nickName = nickNameError;
+  }
+  return errors;
+}
+
 module.exports = {
-  validateUser
+  validateUser,
+  validateUpdateUser
 }

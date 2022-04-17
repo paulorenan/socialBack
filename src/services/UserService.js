@@ -53,10 +53,28 @@ const getUserByNickname = async (nickName) => {
   return user;
 };
 
+const updateUser = async (id, user) => {
+  const { name, nickName, image } = user;
+  try {
+    return await User.update({
+      name,
+      nickName,
+      image,
+      updatedAt: new Date()
+    }, {
+      where: { id }
+    });
+  } catch (error) {
+    return { error }
+  }
+};
+
+
 module.exports = {
   createUser,
   getUsers,
   userLogin,
   getUserByEmail,
-  getUserByNickname
+  getUserByNickname,
+  updateUser,
 };
