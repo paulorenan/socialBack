@@ -87,7 +87,6 @@ const getPostByUserId = async (req, res) => {
   return res.status(200).json(posts);
 };
 
-
 module.exports = {
   createPost,
   getAllPosts,

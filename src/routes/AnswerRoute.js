@@ -6,6 +6,7 @@ const AnswerRoute = Router();
 AnswerRoute.get('/', AnswerController.getAllAnswers);
 AnswerRoute.post('/', AnswerController.createAnswer);
 AnswerRoute.get('/count/:postId', AnswerController.countAnswersByPostId);
+AnswerRoute.get('/user/count/:userId', AnswerController.countUserAnswers);
 AnswerRoute.get('/:postId', AnswerController.getAnswersByPostId);
 AnswerRoute.put('/:id', AnswerController.updateAnswer);
 AnswerRoute.delete('/:id', AnswerController.deleteAnswer);

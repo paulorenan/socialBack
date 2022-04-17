@@ -8,9 +8,9 @@ const createLike = async (like) => {
       userId
     });
   } catch (error) {
-    return { error }
-  }
-}
+    return { error };
+  };
+};
 
 const deleteLike = async (like) => {
   const { postId, userId } = like;
@@ -22,11 +22,21 @@ const deleteLike = async (like) => {
       }
     });
   } catch (error) {
-    return { error }
-  }
-}
+    return { error };
+  };
+};
+
+const countUserLikes = async (userId) => {
+  const count = await Like.count({
+    where: {
+      userId
+    }
+  });
+  return count;
+};
 
 module.exports = {
   createLike,
-  deleteLike
+  deleteLike,
+  countUserLikes,
 }

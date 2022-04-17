@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     email: { type: DataTypes.STRING, unique: true },
     name: { type: DataTypes.STRING },
     password: { type: DataTypes.STRING },
-    image: { type: DataTypes.STRING },
+    image: { type: DataTypes.TEXT },
     createdAt: { type: DataTypes.DATE },
     updatedAt: { type: DataTypes.DATE }
   });

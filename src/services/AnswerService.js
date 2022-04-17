@@ -78,6 +78,15 @@ const deleteAnswer = async (id) => {
   return answer;
 };
 
+const countUserAnswers = async (userId) => {
+  const count = await Answer.count({
+    where: {
+      userId
+    }
+  });
+  return count;
+};
+
 module.exports = {
   createAnswer,
   getAllAnswers,
@@ -86,4 +95,5 @@ module.exports = {
   getAnswerById,
   updateAnswer,
   deleteAnswer,
+  countUserAnswers,
 }

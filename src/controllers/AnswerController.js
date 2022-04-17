@@ -87,6 +87,12 @@ const deleteAnswer = async (req, res) => {
   return res.status(200).json(deletedAnswer);
 };
 
+const countUserAnswers = async (req, res) => {
+  const { userId } = req.params;
+  const count = await AnswerService.countUserAnswers(userId);
+  return res.status(200).json(count);
+};
+
 module.exports = {
   createAnswer,
   getAllAnswers,
@@ -94,4 +100,5 @@ module.exports = {
   countAnswersByPostId,
   updateAnswer,
   deleteAnswer,
+  countUserAnswers,
 };

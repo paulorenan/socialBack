@@ -65,7 +65,20 @@ const deleteLike = async (req, res) => {
   return res.status(201).json(like);
 };
 
+const countUserLikes = async (req, res) => {
+  const { userId } = req.params;
+  if (!userId) {
+    return res.status(400).json({
+      error: 'No userId provided'
+    });
+  };
+  const count = await LikeService.countUserLikes(userId);
+  return res.status(200).json(count);
+};
+
+
 module.exports = {
   createLike,
-  deleteLike
+  deleteLike,
+  countUserLikes,
 };
