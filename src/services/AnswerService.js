@@ -17,6 +17,7 @@ const getAllAnswers = async () => {
   const answers = await Answer.findAll({
     include: [{
       model: User,
+      as: 'user',
       attributes: { exclude: ['password', 'createdAt', 'updatedAt', 'email'] }
     }],
     order: [['createdAt', 'DESC']]
