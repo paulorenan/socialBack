@@ -7,6 +7,7 @@ const LoadRouter = require('./src/routes/LoadSessionRoute');
 const PostRouter = require('./src/routes/PostRoute');
 const AnswerRouter = require('./src/routes/AnswerRoute');
 const LikeRouter = require('./src/routes/LikeRoute');
+const FollowerRouter = require('./src/routes/FollowerRoute');
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger_output.json')
 require('dotenv').config();
@@ -22,6 +23,7 @@ app.use('/api/load', LoadRouter);
 app.use('/api/posts', PostRouter);
 app.use('/api/answers', AnswerRouter);
 app.use('/api/likes', LikeRouter);
+app.use('/api/followers', FollowerRouter);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
