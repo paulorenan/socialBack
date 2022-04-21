@@ -44,9 +44,20 @@ const countUserFollowings = async (userId) => {
   return count;
 };
 
+const getFollowersByUserId = async (userId) => {
+  const followers = await Follower.findAll({
+    where: {
+      userId
+    },
+    attributes: ['followerId']
+  });
+  return followers;
+};
+
 module.exports = {
   createFollower,
   deleteFollower,
   countUserFollowers,
   countUserFollowings,
+  getFollowersByUserId,
 };

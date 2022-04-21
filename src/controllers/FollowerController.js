@@ -86,9 +86,21 @@ const countUserFollowings = async (req, res) => {
   return res.status(201).json(count);
 };
 
+const getFollowersByUserId = async (req, res) => {
+  const userId = req.params.userId;
+  if (!userId) {
+    return res.status(400).json({
+      error: 'No userId provided'
+    });
+  };
+  const followers = await FollowerService.getFollowersByUserId(userId);
+  return res.status(201).json(followers);
+};
+
 module.exports = {
   createFollower,
   deleteFollower,
   countUserFollowers,
   countUserFollowings,
+  getFollowersByUserId,
 };
