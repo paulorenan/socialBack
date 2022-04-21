@@ -16,6 +16,7 @@ const createPost = async (req, res) => {
   };
   const newPost = {
     content: req.body.content,
+    image: req.body.image,
     userId: authToken.userId
   };
   const post = await PostService.createPost(newPost);

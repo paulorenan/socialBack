@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false
