@@ -47,11 +47,6 @@ const deleteLike = async (req, res) => {
     });
   }
   const { postId } = req.params;
-  if (!postId) {
-    return res.status(400).json({
-      error: 'No postId provided'
-    });
-  }
   const like = await LikeService.deleteLike({
     postId,
     userId: authToken.userId
@@ -61,16 +56,11 @@ const deleteLike = async (req, res) => {
       error: like.error.errors[0].message
     });
   }
-  return res.status(201).json(like);
+  return res.status(200).json(like);
 };
 
 const countUserLikes = async (req, res) => {
   const { userId } = req.params;
-  if (!userId) {
-    return res.status(400).json({
-      error: 'No userId provided'
-    });
-  };
   const count = await LikeService.countUserLikes(userId);
   return res.status(200).json(count);
 };

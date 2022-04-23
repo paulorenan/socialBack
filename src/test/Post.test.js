@@ -24,7 +24,6 @@ describe('Test create post route', () => {
         .set('Authorization', testMockData.token)
         .send(testMockData.post);
       expect(chaiHttpResponse.status).to.be.equal(201);
-      console.log(chaiHttpResponse.body);
       expect(chaiHttpResponse.body).to.have.property('content');
       expect(chaiHttpResponse.body).to.have.property('image');
     });

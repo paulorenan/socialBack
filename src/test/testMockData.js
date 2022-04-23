@@ -106,4 +106,13 @@ module.exports = {
     createdAt: new Date(),
     updatedAt: new Date(),
   },
+
+  createLike: {
+    postId: 1,
+    userId: 2,
+  },
+
+  like: {
+    postId: 1,
+  },
 }
