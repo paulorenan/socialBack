@@ -2,13 +2,9 @@ const PostService = require('../services/PostService');
 const auth = require('../schemas/authentication');
 
 const createPost = async (req, res) => {
-  const authToken = auth.verifyToken(req.headers.authorization);
-  const newPost = {
-    content: req.body.content,
-    image: req.body.image,
-    userId: authToken.userId
-  };
-  const post = await PostService.createPost(newPost);
+  const { userId } = auth.verifyToken(req.headers.authorization);
+  const { content, image } = req.body;
+  const post = await PostService.createPost({userId, content, image});
   if (post.error) {
     return res.status(400).json({
       error: post.error.errors[0].message
