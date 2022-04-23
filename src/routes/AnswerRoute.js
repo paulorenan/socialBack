@@ -9,7 +9,8 @@ AnswerRoute.get('/', AnswerController.getAllAnswers);
 
 AnswerRoute.post('/', 
   TokenMiddleware.verifyToken,
-  AnswerController.createAnswer);
+  AnswerController.createAnswer,
+);
 
 AnswerRoute.get('/count/:postId', AnswerController.countAnswersByPostId);
 
@@ -20,11 +21,13 @@ AnswerRoute.get('/:postId', AnswerController.getAnswersByPostId);
 AnswerRoute.put('/:id',
   TokenMiddleware.verifyToken,
   AnswerMiddleware.verifyAnswerAndBelongsToUserEdit,
-  AnswerController.updateAnswer);
+  AnswerController.updateAnswer,
+);
 
 AnswerRoute.delete('/:id',
   TokenMiddleware.verifyToken,
   AnswerMiddleware.verifyAnswerAndBelongsToUserDelete,
-  AnswerController.deleteAnswer);
+  AnswerController.deleteAnswer,
+);
 
 module.exports = AnswerRoute;

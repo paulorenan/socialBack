@@ -13,10 +13,12 @@ FollowerRouter.get('/:userId', FollowerController.getFollowersByUserId);
 FollowerRouter.post('/',
   TokenMiddleware.verifyToken,
   FollowerMiddleware.verifyUserId,
-  FollowerController.createFollower);
+  FollowerController.createFollower,
+);
 
 FollowerRouter.delete('/:userId', 
   TokenMiddleware.verifyToken,
-  FollowerController.deleteFollower);
+  FollowerController.deleteFollower,
+);
 
 module.exports = FollowerRouter;
