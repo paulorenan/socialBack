@@ -5,7 +5,6 @@ const verifyAnswerAndBelongsToUserEdit = async (req, res, next) => {
   const authToken = auth.verifyToken(req.headers.authorization);
   const id = req.params.id;
   const answer = await AnswerService.getAnswerById(id);
-  console.log(answer)
   if (!answer) {
     return res.status(404).json({ error: 'Answer not found' });
   };
@@ -19,7 +18,6 @@ const verifyAnswerAndBelongsToUserDelete = async (req, res, next) => {
   const authToken = auth.verifyToken(req.headers.authorization);
   const id = req.params.id;
   const answer = await AnswerService.getAnswerById(id);
-  console.log(answer)
   if (!answer) {
     return res.status(404).json({ error: 'Answer not found' });
   };

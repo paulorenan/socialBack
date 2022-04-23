@@ -2,24 +2,8 @@ const FollowerService = require('../services/FollowerService');
 const auth = require('../schemas/authentication');
 
 const createFollower = async (req, res) => {
-  const userToken = req.headers.authorization;
-  if (!userToken) {
-    return res.status(401).json({
-      error: 'No token provided'
-    });
-  };
-  const authToken = auth.verifyToken(userToken);
-  if (!authToken) {
-    return res.status(401).json({
-      error: 'Invalid token'
-    });
-  };
+  const authToken = auth.verifyToken(req.headers.authorization);
   const { userId } = req.body;
-  if (!userId) {
-    return res.status(400).json({
-      error: 'No userId provided'
-    });
-  };
   const newFollower = {
     userId,
     followerId: authToken.userId,
@@ -34,18 +18,7 @@ const createFollower = async (req, res) => {
 };
 
 const deleteFollower = async (req, res) => {
-  const userToken = req.headers.authorization;
-  if (!userToken) {
-    return res.status(401).json({
-      error: 'No token provided'
-    });
-  };
-  const authToken = auth.verifyToken(userToken);
-  if (!authToken) {
-    return res.status(401).json({
-      error: 'Invalid token'
-    });
-  };
+  const authToken = auth.verifyToken(req.headers.authorization);
   const { userId } = req.params;
   const follower = await FollowerService.deleteFollower({
     userId,
