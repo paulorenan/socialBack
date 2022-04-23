@@ -9,7 +9,6 @@ const loadSession = async (req, res) => {
     });
   }
   const authToken = auth.verifyToken(token);
-  console.log(authToken);
   if (!authToken) {
     return res.status(401).json({
       error: 'Invalid token'
