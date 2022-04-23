@@ -13,7 +13,8 @@
   "paths": {
     "/api/users/": {
       "post": {
-        "description": "Create a new user",
+        "tags": ["Users"],
+        "description": "Create a user",
         "parameters": [
           {
             "name": "body",
@@ -47,6 +48,7 @@
         }
       },
       "get": {
+        "tags": ["Users"],
         "description": "Get all users",
         "parameters": [],
         "responses": {
@@ -58,6 +60,7 @@
     },
     "/api/users/me": {
       "put": {
+        "tags": ["Users"],
         "description": "Update your user",
         "parameters": [
           {
@@ -75,9 +78,6 @@
                   "example": "any"
                 },
                 "nickName": {
-                  "example": "any"
-                },
-                "image": {
                   "example": "any"
                 }
               }
@@ -100,8 +100,67 @@
         }
       }
     },
+    "/api/users/me/image": {
+      "put": {
+        "tags": ["Users"],
+        "description": "Update your user image",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "image": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/users/id/{userId}": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Get a user by Id",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
     "/api/users/{nickName}": {
       "get": {
+        "tags": ["Users"],
         "description": "Get a user by nickName",
         "parameters": [
           {
@@ -123,7 +182,8 @@
     },
     "/api/login/": {
       "post": {
-        "description": "Login with email and password",
+        "tags": ["Login"],
+        "description": "Login",
         "parameters": [
           {
             "name": "body",
@@ -153,7 +213,8 @@
     },
     "/api/load/": {
       "post": {
-        "description": "Load a user by token",
+        "tags": ["Load"],
+        "description": "Load Session",
         "parameters": [
           {
             "name": "authorization",
@@ -173,6 +234,7 @@
     },
     "/api/posts/": {
       "get": {
+        "tags": ["Posts"],
         "description": "Get all posts",
         "parameters": [],
         "responses": {
@@ -182,7 +244,8 @@
         }
       },
       "post": {
-        "description": "Create a new post",
+        "tags": ["Posts"],
+        "description": "Create a post",
         "parameters": [
           {
             "name": "authorization",
@@ -196,6 +259,9 @@
               "type": "object",
               "properties": {
                 "content": {
+                  "example": "any"
+                },
+                "image": {
                   "example": "any"
                 }
               }
@@ -217,7 +283,8 @@
     },
     "/api/posts/user/{id}": {
       "get": {
-        "description": "Get all posts of a user by user id",
+        "tags": ["Posts"],
+        "description": "Get all posts by user Id",
         "parameters": [
           {
             "name": "id",
@@ -235,7 +302,8 @@
     },
     "/api/posts/{id}": {
       "put": {
-        "description": "Update a post by id",
+        "tags": ["Posts"],
+        "description": "Update a post",
         "parameters": [
           {
             "name": "id",
@@ -280,7 +348,8 @@
         }
       },
       "delete": {
-        "description": "Delete a post by id",
+        "tags": ["Posts"],
+        "description": "Delete a post",
         "parameters": [
           {
             "name": "id",
@@ -315,6 +384,7 @@
     },
     "/api/answers/": {
       "get": {
+        "tags": ["Answers"],
         "description": "Get all answers",
         "parameters": [],
         "responses": {
@@ -324,7 +394,8 @@
         }
       },
       "post": {
-        "description": "Create a new answer",
+        "tags": ["Answers"],
+        "description": "Create a answer",
         "parameters": [
           {
             "name": "authorization",
@@ -362,7 +433,8 @@
     },
     "/api/answers/count/{postId}": {
       "get": {
-        "description": "Get the number of answers of a post by post id",
+        "tags": ["Answers"],
+        "description": "Get count of answers by post Id",
         "parameters": [
           {
             "name": "postId",
@@ -380,7 +452,8 @@
     },
     "/api/answers/user/count/{userId}": {
       "get": {
-        "description": "Get the number of answers of a user by user id",
+        "tags": ["Answers"],
+        "description": "Get count of answers by user Id",
         "parameters": [
           {
             "name": "userId",
@@ -398,7 +471,8 @@
     },
     "/api/answers/{postId}": {
       "get": {
-        "description": "Get all answers of a post by post id",
+        "tags": ["Answers"],
+        "description": "Get all answers by post Id",
         "parameters": [
           {
             "name": "postId",
@@ -416,7 +490,8 @@
     },
     "/api/answers/{id}": {
       "put": {
-        "description": "Update an answer by id",
+        "tags": ["Answers"],
+        "description": "Update a answer",
         "parameters": [
           {
             "name": "id",
@@ -458,7 +533,8 @@
         }
       },
       "delete": {
-        "description": "Delete an answer by id",
+        "tags": ["Answers"],
+        "description": "Delete a answer",
         "parameters": [
           {
             "name": "id",
@@ -490,7 +566,8 @@
     },
     "/api/likes/user/count/{userId}": {
       "get": {
-        "description": "Get the number of likes of a user by user id",
+        "tags": ["Likes"],
+        "description": "Get count of likes by user Id",
         "parameters": [
           {
             "name": "userId",
@@ -502,16 +579,14 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
           }
         }
       }
     },
     "/api/likes/": {
       "post": {
-        "description": "Create a new like",
+        "tags": ["Likes"],
+        "description": "Create a like",
         "parameters": [
           {
             "name": "authorization",
@@ -546,7 +621,8 @@
     },
     "/api/likes/{postId}": {
       "delete": {
-        "description": "Delete a like by post id",
+        "tags": ["Likes"],
+        "description": "Delete a like",
         "parameters": [
           {
             "name": "postId",
@@ -558,6 +634,146 @@
             "name": "authorization",
             "in": "header",
             "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/followers/count/{userId}": {
+      "get": {
+        "tags": ["Followers"],
+        "description": "Get count of followers by user Id",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/followers/following/count/{userId}": {
+      "get": {
+        "tags": ["Followers"],
+        "description": "Get count of following by user Id",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/followers/following/{userId}": {
+      "get": {
+        "tags": ["Followers"],
+        "description": "Get all following by user Id",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/followers/{userId}": {
+      "get": {
+        "tags": ["Followers"],
+        "description": "Get all followers by user Id",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Followers"],
+        "description": "Delete a follower",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/followers/": {
+      "post": {
+        "tags": ["Followers"],
+        "description": "Create a follower",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
