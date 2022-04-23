@@ -115,4 +115,69 @@ module.exports = {
   like: {
     postId: 1,
   },
+
+  createAnswer: {
+    content: 'Test answer',
+    postId: 1,
+  },
+
+  answer: {
+    id: 1,
+    content: 'Test answer',
+    postId: 1,
+    userId: 3,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+
+  allAnswers: [
+    {
+      id: 1,
+      content: 'Test answer',
+      postId: 1,
+      userId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      id: 2,
+      content: 'Test answer 2',
+      postId: 1,
+      userId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+  ],
+
+  answersByPostId: [
+    {
+      id: 1,
+      content: 'Test answer',
+      postId: 1,
+      userId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      id: 2,
+      content: 'Test answer 2',
+      postId: 1,
+      userId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+  ],
+
+  updateAnswer: {
+    content: 'Test answer',
+  },
+
+  noAuthAnswer: {
+    id: 2,
+    content: 'Test answer 2',
+    postId: 1,
+    userId: 1,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
 }
