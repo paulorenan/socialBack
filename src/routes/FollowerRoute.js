@@ -8,6 +8,8 @@ FollowerRouter.get('/count/:userId', FollowerController.countUserFollowers);
 
 FollowerRouter.get('/following/count/:userId', FollowerController.countUserFollowings);
 
+FollowerRouter.get('/following/:userId', FollowerController.getFollowingsByUserId);
+
 FollowerRouter.get('/:userId', FollowerController.getFollowersByUserId);
 
 FollowerRouter.post('/',

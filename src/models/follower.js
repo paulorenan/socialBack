@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
       as: 'follower',
       foreignKey: 'followerId',
       onUpdate: 'CASCADE',
-      onDelete: 'CASCADE'
+      onDelete: 'CASCADE',
     });
   };
 

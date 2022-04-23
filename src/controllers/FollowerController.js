@@ -50,10 +50,17 @@ const getFollowersByUserId = async (req, res) => {
   return res.status(200).json(followers);
 };
 
+const getFollowingsByUserId = async (req, res) => {
+  const userId = req.params.userId;
+  const followings = await FollowerService.getFollowingsByUserId(userId);
+  return res.status(200).json(followings);
+};
+
 module.exports = {
   createFollower,
   deleteFollower,
   countUserFollowers,
   countUserFollowings,
   getFollowersByUserId,
+  getFollowingsByUserId,
 };

@@ -1,4 +1,4 @@
-const { Follower } = require('../models');
+const { Follower, User } = require('../models');
 
 const createFollower = async (follower) => {
   const { userId, followerId } = follower;
@@ -49,9 +49,29 @@ const getFollowersByUserId = async (userId) => {
     where: {
       userId
     },
-    attributes: ['followerId']
+    attributes: ['followerId'],
+    include: [{
+      model: User,
+      as: 'follower',
+      attributes: ['name', 'nickName', 'image']
+    }]
   });
   return followers;
+};
+
+const getFollowingsByUserId = async (userId) => {
+  const followings = await Follower.findAll({
+    where: {
+      followerId: userId
+    },
+    attributes: ['userId'],
+    include: [{
+      model: User,
+      as: 'user',
+      attributes: ['name', 'nickName', 'image']
+    }],
+  });
+  return followings;
 };
 
 module.exports = {
@@ -60,4 +80,5 @@ module.exports = {
   countUserFollowers,
   countUserFollowings,
   getFollowersByUserId,
+  getFollowingsByUserId,
 };
