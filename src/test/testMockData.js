@@ -180,4 +180,14 @@ module.exports = {
     createdAt: new Date(),
     updatedAt: new Date(),
   },
+
+  follower: {
+    id: 1,
+    userId: 1,
+    followerId: 2,
+  },
+
+  createFollower: {
+    userId: 1,
+  },
 }

@@ -47,11 +47,6 @@ const deleteFollower = async (req, res) => {
     });
   };
   const { userId } = req.params;
-  if (!userId) {
-    return res.status(400).json({
-      error: 'No userId provided'
-    });
-  };
   const follower = await FollowerService.deleteFollower({
     userId,
     followerId: authToken.userId,
@@ -61,40 +56,25 @@ const deleteFollower = async (req, res) => {
       error: 'You did not follow this user'
     });
   }
-  return res.status(201).json(follower);
+  return res.status(200).json(follower);
 };
 
 const countUserFollowers = async (req, res) => {
   const userId = req.params.userId;
-  if (!userId) {
-    return res.status(400).json({
-      error: 'No userId provided'
-    });
-  };
   const count = await FollowerService.countUserFollowers(userId);
-  return res.status(201).json(count);
+  return res.status(200).json(count);
 };
 
 const countUserFollowings = async (req, res) => {
   const userId = req.params.userId;
-  if (!userId) {
-    return res.status(400).json({
-      error: 'No userId provided'
-    });
-  };
   const count = await FollowerService.countUserFollowings(userId);
-  return res.status(201).json(count);
+  return res.status(200).json(count);
 };
 
 const getFollowersByUserId = async (req, res) => {
   const userId = req.params.userId;
-  if (!userId) {
-    return res.status(400).json({
-      error: 'No userId provided'
-    });
-  };
   const followers = await FollowerService.getFollowersByUserId(userId);
-  return res.status(201).json(followers);
+  return res.status(200).json(followers);
 };
 
 module.exports = {
