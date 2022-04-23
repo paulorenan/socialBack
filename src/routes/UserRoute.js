@@ -21,6 +21,8 @@ UserRouter.put('/me/image',
   TokenMiddleware.verifyToken,
   UserController.updateUserImage);
 
+UserRouter.get('/id/:userId', UserController.getUserById);
+
 UserRouter.get('/:nickName', UserController.getUserByNickname);
 
 module.exports = UserRouter;

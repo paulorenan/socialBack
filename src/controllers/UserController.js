@@ -46,10 +46,20 @@ const updateUserImage = async (req, res) => {
   res.status(200).json(user);
 };
 
+const getUserById = async (req, res) => {
+  const { userId } = req.params;
+  const user = await UserService.getUserById(userId);
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+  res.status(200).json(user);
+};
+
 module.exports = {
   createUser,
   getUsers,
   getUserByNickname,
   updateUser,
   updateUserImage,
+  getUserById,
 };

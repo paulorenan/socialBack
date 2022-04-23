@@ -81,6 +81,16 @@ const updateUserImage = async (id, image) => {
   }
 };
 
+const getUserById = async (id) => {
+  const user = await User.findOne({
+    where: {
+      id
+    },
+    attributes: ['name', 'nickName', 'image']
+  });
+  return user;
+};
+
 
 module.exports = {
   createUser,
@@ -90,4 +100,5 @@ module.exports = {
   getUserByNickname,
   updateUser,
   updateUserImage,
+  getUserById,
 };
