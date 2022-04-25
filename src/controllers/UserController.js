@@ -1,6 +1,5 @@
 const UserService = require('../services/UserService');
 const auth = require('../schemas/authentication');
-const validation = require('../schemas/validation');
 
 const createUser = async (req, res) => {
   const { name, nickName, email, password } = req.body;
