@@ -16,7 +16,8 @@ const createUser = async (user) => {
 
 const getUsers = async () => {
   const users = await User.findAll({
-    attributes: { exclude: ['password'] }
+    attributes: { exclude: ['password'] },
+    order: [['id', 'ASC']]
   });
   return users;
 };
