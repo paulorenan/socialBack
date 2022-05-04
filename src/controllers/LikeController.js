@@ -38,9 +38,16 @@ const countUserLikes = async (req, res) => {
   return res.status(200).json(count);
 };
 
+const getLikesByPostId = async (req, res) => {
+  const { postId } = req.params;
+  const likes = await LikeService.getLikesByPostId(postId);
+  return res.status(200).json(likes);
+};
+
 
 module.exports = {
   createLike,
   deleteLike,
   countUserLikes,
+  getLikesByPostId,
 };

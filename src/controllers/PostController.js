@@ -13,8 +13,9 @@ const createPost = async (req, res) => {
   return res.status(201).json(post);
 };
 
-const getAllPosts = async (req, res) => {
-  const posts = await PostService.getAllPosts();
+const getPosts = async (req, res) => {
+  const { limit } = req.query;
+  const posts = await PostService.getPosts(limit);
   return res.status(200).json(posts);
 };
 
@@ -45,7 +46,7 @@ const getPostByUserId = async (req, res) => {
 
 module.exports = {
   createPost,
-  getAllPosts,
+  getPosts,
   updatePost,
   deletePost,
   getPostByUserId,

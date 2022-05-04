@@ -4,7 +4,10 @@ const LikeMiddleware = require('../middlewares/LikeMiddleware');
 const { Router } = require('express');
 
 const LikeRouter = Router();
+
 LikeRouter.get('/user/count/:userId', LikeController.countUserLikes);
+
+LikeRouter.get('/post/:postId', LikeController.getLikesByPostId);
 
 LikeRouter.post('/',
   TokenMiddleware.verifyToken,

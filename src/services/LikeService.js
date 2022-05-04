@@ -35,8 +35,19 @@ const countUserLikes = async (userId) => {
   return count;
 };
 
+const getLikesByPostId = async (postId) => {
+  const likes = await Like.findAll({
+    where: {
+      postId
+    },
+    attributes: ['userId']
+  });
+  return likes;
+}
+
 module.exports = {
   createLike,
   deleteLike,
   countUserLikes,
+  getLikesByPostId,
 }

@@ -5,7 +5,7 @@ const { Router } = require('express')
 
 const PostRoute = Router();
 
-PostRoute.get('/', PostController.getAllPosts);
+PostRoute.get('/', PostController.getPosts);
 
 PostRoute.post('/', 
   TokenMiddleware.verifyToken,

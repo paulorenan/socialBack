@@ -13,21 +13,39 @@ const createPost = async (post) => {
   };
 };
 
-const getAllPosts = async () => {
-  const posts = await Post.findAll({
-    include: [{
-      model: User,
-      as: 'user',
-      attributes: { exclude: ['password', 'createdAt', 'updatedAt', 'email'] }
-    },
-    {
-      model: Like,
-      as: 'likes',
-      attributes: ['userId']
-    }],
-    order: [['createdAt', 'DESC']]
-  });
-  return posts;
+const getPosts = async (limit) => {
+  if (limit === undefined){
+    const posts = await Post.findAll({
+      include: [{
+        model: User,
+        as: 'user',
+        attributes: { exclude: ['password', 'createdAt', 'updatedAt', 'email'] }
+      },
+      {
+        model: Like,
+        as: 'likes',
+        attributes: ['userId']
+      }],
+      order: [['createdAt', 'DESC']]
+    });
+    return posts;
+  } else {
+    const posts = await Post.findAll({
+      include: [{
+        model: User,
+        as: 'user',
+        attributes: { exclude: ['password', 'createdAt', 'updatedAt', 'email'] }
+      },
+      {
+        model: Like,
+        as: 'likes',
+        attributes: ['userId']
+      }],
+      order: [['createdAt', 'DESC']],
+      limit
+    });
+    return posts;
+  }
 };
 
 const getPostById = async (postId) => {
@@ -82,7 +100,7 @@ const deletePost = async (postId) => {
 
 module.exports = {
   createPost,
-  getAllPosts,
+  getPosts,
   getPostById,
   updatePost,
   deletePost,
