@@ -20,11 +20,6 @@ const getPosts = async (limit) => {
         model: User,
         as: 'user',
         attributes: { exclude: ['password', 'createdAt', 'updatedAt', 'email'] }
-      },
-      {
-        model: Like,
-        as: 'likes',
-        attributes: ['userId']
       }],
       order: [['createdAt', 'DESC']]
     });
@@ -35,11 +30,6 @@ const getPosts = async (limit) => {
         model: User,
         as: 'user',
         attributes: { exclude: ['password', 'createdAt', 'updatedAt', 'email'] }
-      },
-      {
-        model: Like,
-        as: 'likes',
-        attributes: ['userId']
       }],
       order: [['createdAt', 'DESC']],
       limit
@@ -66,11 +56,6 @@ const getPostByUserId = async (userId) => {
       model: User,
       as: 'user',
       attributes: { exclude: ['password', 'createdAt', 'updatedAt', 'email'] }
-    },
-    {
-      model: Like,
-      as: 'likes',
-      attributes: ['userId']
     }],
     order: [['createdAt', 'DESC']]
   });
