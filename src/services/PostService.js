@@ -14,7 +14,7 @@ const createPost = async (post) => {
 };
 
 const getPosts = async (limit) => {
-  if (limit === undefined){
+  if (limit === undefined || isNaN(limit)) {
     const posts = await Post.findAll({
       include: [{
         model: User,
