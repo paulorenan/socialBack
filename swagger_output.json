@@ -5,7 +5,7 @@
     "title": "SocialNetwork API",
     "description": "API to manage an social network"
   },
-  "host": "the-social-back.herokuapp.com",
+  "host": "social-back.vercel.app/",
   "basePath": "/",
   "schemes": [
     "https"
