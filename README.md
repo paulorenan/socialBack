@@ -12,4 +12,4 @@ Back-End para gerenciar um site de social network
 
 ## Documentação da API
 
-[Documentação](https://the-social-back.herokuapp.com/api-docs/)
+[Documentação](https://social-back.vercel.app/api-docs/)
